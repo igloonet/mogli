@@ -13,11 +13,14 @@ module Mogli
     # Musicians
     define_properties :record_label, :hometown, :band_members, :genre
 
+    # Restaurants
+    define_properties :parking, :public_transit, :hours, :payment_options, :restaurant_services, :restaurant_specialties
+
     # As a like
     define_properties :created_time
 
     def client_for_page
-      if access_token.blank?
+      if access_token.nil? || access_token.empty?
         raise MissingAccessToken.new("You can only get a client for this page if an access_token has been provided. i.e. via /me/accounts")
       end
       Client.new(access_token)
